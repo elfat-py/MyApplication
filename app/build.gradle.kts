@@ -43,8 +43,11 @@ android {
 
 dependencies {
     implementation("androidx.room:room-runtime:$roomVersion")
+    implementation(libs.androidx.mediarouter)
     ksp("androidx.room:room-compiler:$roomVersion")  // KSP instead of kapt
     implementation("androidx.room:room-ktx:$roomVersion")
+    implementation(libs.material.v1120)
+    implementation(libs.androidx.constraintlayout.v220)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

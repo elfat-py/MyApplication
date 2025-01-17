@@ -1,56 +1,22 @@
 package com.example.myapplication.ui
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import androidx.activity.ComponentActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
-import com.example.myapplication.data.AppDatabase
-import com.example.myapplication.data.ExpenseRepository
-import com.example.myapplication.viewmodel.ExpenseViewModel
-import com.example.myapplication.viewmodel.ExpenseViewModelFactory
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.flow.collectLatest
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : ComponentActivity() {
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 
-    private lateinit var viewModel: ExpenseViewModel
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: ExpenseAdapter
-
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
 
-        // Initialize DB, Repository, and ViewModel
-        val db = AppDatabase.getDatabase(this)
-        val repository = ExpenseRepository(db.expenseDao())
-        val factory = ExpenseViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, factory).get(ExpenseViewModel::class.java)
-
-        // Setup RecyclerView
-        recyclerView = findViewById(R.id.rvExpenses)
-        adapter = ExpenseAdapter()
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = adapter
-
-        // Collect Flow from ViewModel
-        lifecycleScope.launchWhenStarted {
-            viewModel.expenseListFlow.collectLatest { expenses ->
-                adapter.submitList(expenses)
-            }
-        }
-
-        // Add Expense button -> launch AddExpenseActivity
-        findViewById<Button>(R.id.btnAddExpense).setOnClickListener {
-            val intent = Intent(this, AddExpenseActivity::class.java)
-            startActivity(intent)
-        }
-
-        // Load initial data
-//        viewModel.loadExpenses()
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
+        bottomNav.setupWithNavController(navController)
     }
 }

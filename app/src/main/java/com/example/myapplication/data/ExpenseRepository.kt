@@ -13,8 +13,6 @@ class ExpenseRepository(private val expenseDao: ExpenseDao) {
         expenseDao.insertExpense(expense)
     }
 
-
-
     suspend fun deleteExpense(id: Int) {
         expenseDao.deleteExpense(id)
     }
