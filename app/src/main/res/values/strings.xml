@@ -12,6 +12,14 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="expense_icon">Expense Icon</string>
+    <string name="currency_prompt">Currency</string>
+    <string-array name="currency_options">
+        <item>USD</item>
+        <item>EUR</item>
+        <item>GBP</item>
+        <item>INR</item>
+    </string-array>
+
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus

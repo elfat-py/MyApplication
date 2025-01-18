@@ -1,139 +1,268 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
+    <!-- Welcome Back Text -->
 
     <!-- Profile Picture -->
+    <TextView
+        android:id="@+id/welcome_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome Back!"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <ImageView
         android:id="@+id/profile_picture"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/circle_shape"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_profile"
-        app:layout_constraintEnd_toStartOf="@id/greeting_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/welcome_text" />
 
-    <!-- Greeting -->
+    <!-- Greeting Text -->
     <TextView
         android:id="@+id/greeting_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="Hello, John!"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/profile_picture"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-        android:id="@+id/cash_out"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ic_trending_up"
-        android:text="Cash Out: $300"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:padding="12dp"
-        app:layout_constraintTop_toBottomOf="@id/greeting_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/cash_in"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp" />
-
-    <!-- Cash In Section -->
-    <TextView
-        android:id="@+id/cash_in"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ic_trending_down"
-        android:text="Cash In: $500"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:padding="12dp"
-        app:layout_constraintTop_toBottomOf="@id/greeting_text"
-        app:layout_constraintStart_toEndOf="@id/cash_out"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="8dp" />
-
-
-    <!-- Total Spendings -->
-    <TextView
-        android:id="@+id/total_spendings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Total Spendings: $500"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cash_out" />
-
-    <!-- Preferred Currency -->
-    <TextView
-        android:id="@+id/preferred_currency"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Currency: USD"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/total_spendings" />
-
-    <!-- Recent Transactions Section -->
-    <TextView
-        android:id="@+id/recent_transactions_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Recent Transactions"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/preferred_currency" />
+        app:layout_constraintBottom_toBottomOf="@id/profile_picture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/profile_picture"
+        app:layout_constraintTop_toBottomOf="@id/welcome_text" />
 
-    <!-- Recent Transactions List -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recent_transactions_list"
+
+    <!-- Cash Section -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cash_section"
         android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:background="@android:color/darker_gray"
+        android:layout_marginTop="18dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recent_transactions_title" />
+        app:layout_constraintTop_toBottomOf="@id/greeting_text">
 
-    <!-- Chart or Graph Section -->
-    <ImageView
-        android:id="@+id/spending_chart"
+        <!-- Cash Out Section (Left) -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cash_out_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Cash Out Icon -->
+            <ImageView
+                android:id="@+id/cash_out_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_trending_down"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Cash Out Text -->
+            <TextView
+                android:id="@+id/cash_out_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cash Out: $300"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cash_out_icon"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Cash In Section (Right) -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cash_in_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Cash In Icon -->
+            <ImageView
+                android:id="@+id/cash_in_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_trending_up"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Cash In Text -->
+            <TextView
+                android:id="@+id/cash_in_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cash In: $500"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cash_in_icon"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Username & change username -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/username_section1"
         android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="Spending Chart"
-        android:src="@drawable/ic_chart"
+        android:layout_marginTop="18dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recent_transactions_list" />
+        app:layout_constraintTop_toBottomOf="@id/cash_section">
 
-    <!-- Settings Button -->
-    <Button
-        android:id="@+id/settings_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Settings"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <!-- Username Section (Left) -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/username_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <!-- Logout Button -->
-    <Button
-        android:id="@+id/logout_button"
-        android:layout_width="wrap_content"
+            <!-- Username Icon -->
+            <ImageView
+                android:id="@+id/username_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_user"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Username Text -->
+            <TextView
+                android:id="@+id/username_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username: John"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/username_icon"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Change Username Section (Right) -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_margin="18dp"
+            android:id="@+id/change_username_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Change Username Icon -->
+            <ImageView
+                android:id="@+id/change_username_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="18dp"
+                android:src="@drawable/ic_edit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Currency Settings Section -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/currency_settings_section"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Logout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginTop="18dp"
+        app:layout_constraintTop_toBottomOf="@id/username_section1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Label -->
+
+        <!-- Currency Dropdown -->
+        <TextView
+            android:id="@+id/currency_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Preferred Currency:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/currency_dropdown"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:entries="@array/currency_options"
+            android:prompt="@string/currency_prompt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Goals and Targets Section -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/goals_section"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        app:layout_constraintTop_toBottomOf="@id/currency_settings_section"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Goals Title -->
+        <TextView
+            android:id="@+id/goals_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Goals and Targets"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Add Goal Button -->
+        <Button
+            android:id="@+id/add_goal_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Goal"
+            app:layout_constraintTop_toTopOf="@id/goals_title"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Goals List -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/goals_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/goals_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
