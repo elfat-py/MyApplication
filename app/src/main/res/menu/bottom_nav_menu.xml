@@ -16,4 +16,9 @@
         android:icon="@drawable/ic_charts"
         android:title="Graphs" />
 
+    <item
+        android:id="@+id/nav_user"
+        android:icon="@drawable/ic_user"
+        android:title="User" />
+
 </menu>

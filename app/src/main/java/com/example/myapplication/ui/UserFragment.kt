@@ -10,10 +10,10 @@ import com.example.myapplication.R
 
 /**
  * A simple [Fragment] subclass.
- * Use the [GraphsFragment.newInstance] factory method to
+ * Use the [UserFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class GraphsFragment : Fragment() {
+class UserFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,6 +21,6 @@ class GraphsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_graphs, container, false)
+        return inflater.inflate(R.layout.fragment_user, container, false)
     }
 }
