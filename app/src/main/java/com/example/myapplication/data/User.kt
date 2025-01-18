@@ -10,6 +10,8 @@ data class User(
     val firstName: String,
     val lastName: String,
     val monthlyBudget: Double,
+    val currency: String = "USD",
     val created_at: Long = System.currentTimeMillis(), // Store as epoch time (milliseconds)
     val updated_at: Long = System.currentTimeMillis()  // Store as epoch time (milliseconds)
+
 )

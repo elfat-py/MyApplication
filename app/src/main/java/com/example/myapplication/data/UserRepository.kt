@@ -9,7 +9,14 @@ class UserRepository(private val userDao: UserDao) {
     }
 
     suspend fun updateUser(user: User) {
-        userDao.updateUser(user.id, user.firstName, user.lastName, user.monthlyBudget, System.currentTimeMillis())
+        userDao.updateUser(
+            userId = user.id,
+            firstName = user.firstName,
+            lastName = user.lastName,
+            currency = user.currency,
+            monthlyBudget = user.monthlyBudget,
+            updatedAt = System.currentTimeMillis()
+        )
     }
 
 

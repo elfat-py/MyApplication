@@ -18,7 +18,14 @@ interface UserDao {
     @Query("SELECT * FROM user where id = :userId")
     fun getUser(userId: Int): Flow<User>
 
-    @Query("UPDATE user SET firstName = :firstName, lastName = :lastName, monthlyBudget = :monthlyBudget, updated_at = :updatedAt WHERE id = :userId")
-    suspend fun updateUser(userId: Int, firstName: String, lastName: String, monthlyBudget: Double, updatedAt: Long)
+    @Query("UPDATE user SET firstName = :firstName, lastName = :lastName, monthlyBudget = :monthlyBudget, currency = CASE WHEN :currency IS NOT NULL THEN :currency ELSE currency END, updated_at = :updatedAt WHERE id = :userId")
+    suspend fun updateUser(
+        userId: Int,
+        firstName: String,
+        lastName: String,
+        currency: String?, // Nullable currency
+        monthlyBudget: Double,
+        updatedAt: Long
+    )
 
 }
