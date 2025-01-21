@@ -9,10 +9,10 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "expense")
 data class Expense(
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    val id: Long = 0L, // Auto-generated primary key
+    val name: String,
+    val iconResId: Int, // Resource ID for the icon
+    val time: String,
     val date: String,
-    val amount: Double,
-    val category: String,
-    val notes: String? = null
+    val amount: String
 )
-
