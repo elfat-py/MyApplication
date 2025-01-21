@@ -8,12 +8,9 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import android.util.Log
 
-/**
- * The Room database class.
- * Defines the tables (entities) and the version.
- */
-@Database(entities = [Expense::class, User::class], version = 4, exportSchema = false)
+@Database(entities = [Expense::class, User::class], version = 5, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
@@ -24,17 +21,17 @@ abstract class AppDatabase : RoomDatabase() {
         private var INSTANCE: AppDatabase? = null
 
         /**
-         * Get or create the database instance.
+         * Returns a singleton instance of the database.
          */
         fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "todo_db_db" // Database name
+                    "some_db" // Database name
                 )
-                    .addCallback(AppDatabaseCallback(context)) // Use callback for prepopulation
-                    .fallbackToDestructiveMigration() // For schema changes during development
+                    .addCallback(AppDatabaseCallback(context)) // Pass context to the callback
+                    .fallbackToDestructiveMigration() // For development; replace with migrations in production
                     .build()
                 INSTANCE = instance
                 instance
@@ -43,34 +40,41 @@ abstract class AppDatabase : RoomDatabase() {
     }
 
     /**
-     * Room Callback for database operat
-     *     private fun updateUserUI(user: User) {
-     *         firstNameView.text = user.firstName
-     *         lastNameView.text = user.lastName
-     *         budgetView.text = "${user.monthlyBudget}"
-     *
-     *     }ions like pre-populating data.
+     * Database callback for handling events like prepopulation.
      */
     private class AppDatabaseCallback(private val context: Context) : Callback() {
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
-            prepopulateDatabase(context)
+            Log.d("AppDatabase", "Database created. Starting prepopulation...")
+            prepopulateDatabase()
         }
 
         /**
-         * Prepopulate the database with a default user.
+         * Prepopulate the database with initial data.
          */
-        private fun prepopulateDatabase(context: Context) {
-            val database = getDatabase(context)
-            CoroutineScope(Dispatchers.IO).launch {
-                database.userDao().insertUser(
-                    User(
-                        firstName = "Your First Name",
-                        lastName = "Second Name",
-                        monthlyBudget = 1000.0,
-                        currency = "USD"
-                    )
-                )
+        private fun prepopulateDatabase() {
+            // Use the INSTANCE directly after initialization
+            INSTANCE?.let { database ->
+                CoroutineScope(Dispatchers.IO).launch {
+                    try {
+                        val userDao = database.userDao()
+                        if (userDao.getUserCount() == 0) { // Only prepopulate if no user exists
+                            userDao.insertUser(
+                                User(
+                                    firstName = "Your First Name",
+                                    lastName = "Second Name",
+                                    monthlyBudget = 1000.0,
+                                    currency = "USD" // Ensure a valid default value
+                                )
+                            )
+                            Log.d("AppDatabase", "Prepopulation complete.")
+                        } else {
+                            Log.d("AppDatabase", "Database already contains user data. Skipping prepopulation.")
+                        }
+                    } catch (e: Exception) {
+                        Log.e("AppDatabase", "Error during prepopulation: ${e.message}")
+                    }
+                }
             }
         }
     }
