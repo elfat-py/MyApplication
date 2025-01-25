@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-01-25T12:33:19.985969700Z">
+        <DropdownSelection timestamp="2025-01-25T13:08:01.254759700Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="PhysicalDevice" identifier="serial=3d7d63bf" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\alex\.android\avd\Medium_Phone.avd" />
             </handle>
           </Target>
         </DropdownSelection>
@@ -26,10 +26,10 @@
       </SelectionState>
       <SelectionState runConfigName="ExpenseDaoTest">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-01-25T12:08:59.150075600Z">
+        <DropdownSelection timestamp="2025-01-25T14:31:04.801643900Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\alex\.android\avd\Medium_Phone.avd" />
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=3d7d63bf" />
             </handle>
           </Target>
         </DropdownSelection>

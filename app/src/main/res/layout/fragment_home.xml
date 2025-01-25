@@ -29,7 +29,7 @@
             android:weightSum="1"
             android:layout_marginBottom="24dp">
 
-            <!-- Circular Chart -->
+            <!-- Circular Chart (Placeholder) -->
             <ImageView
                 android:layout_width="120dp"
                 android:layout_height="120dp"
@@ -41,9 +41,10 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="vertical">
 
+                <!-- Housing Card -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -64,7 +65,9 @@
                             android:textColor="#FFFFFF"
                             android:textSize="14sp" />
 
+                        <!-- We will set this dynamically -->
                         <TextView
+                            android:id="@+id/housingText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="$965.00"
@@ -74,6 +77,40 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
+                <!-- Food Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#2A2A2A"
+                    app:cardCornerRadius="8dp"
+                    android:layout_marginBottom="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Food"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+
+                        <!-- We will set this dynamically -->
+                        <TextView
+                            android:id="@+id/foodText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$300.00"
+                            android:textColor="#03A9F4"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Fun Card (new) -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -89,15 +126,17 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Food"
+                            android:text="Fun"
                             android:textColor="#FFFFFF"
                             android:textSize="14sp" />
 
+                        <!-- We will set this dynamically -->
                         <TextView
+                            android:id="@+id/funText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="$300.00"
-                            android:textColor="#03A9F4"
+                            android:text="$0.00"
+                            android:textColor="#FFC107"
                             android:textSize="16sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -105,7 +144,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Income Section -->
+        <!-- Income Section (Now used for Budget/Spent) -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -121,6 +160,7 @@
             android:orientation="horizontal"
             android:layout_marginBottom="24dp">
 
+            <!-- "Budget" Card (replacing Salary) -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -138,11 +178,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Salary"
+                        android:text="Budget"
                         android:textColor="#FFFFFF"
                         android:textSize="14sp" />
 
+                    <!-- We will set this dynamically -->
                     <TextView
+                        android:id="@+id/budgetText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="$1,500.00"
@@ -152,6 +194,7 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- "Spent" Card (replacing Interest) -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -168,14 +211,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Interest"
+                        android:text="Spent"
                         android:textColor="#FFFFFF"
                         android:textSize="14sp" />
 
+                    <!-- We will set this dynamically -->
                     <TextView
+                        android:id="@+id/spentText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="$240.00"
+                        android:text="$0.00"
                         android:textColor="#FFC107"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -183,7 +228,7 @@
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
-        <!-- Spending Section -->
+        <!-- Spending Section (RecyclerView) -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -192,6 +237,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginBottom="16dp" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/expenses_recycler_view"
             android:layout_width="match_parent"
@@ -199,73 +245,6 @@
             android:layout_marginTop="16dp"
             android:scrollbars="vertical"
             android:clipToPadding="false" />
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            <com.google.android.material.card.MaterialCardView-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="1"-->
-<!--                android:layout_marginEnd="8dp"-->
-<!--                app:cardBackgroundColor="#2A2A2A"-->
-<!--                app:cardCornerRadius="8dp">-->
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:padding="12dp"-->
-<!--                    android:orientation="vertical">-->
-
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Spotify"-->
-<!--                        android:textColor="#FFFFFF"-->
-<!--                        android:textSize="14sp" />-->
-
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="$54.99"-->
-<!--                        android:textColor="#FF5722"-->
-<!--                        android:textSize="16sp"-->
-<!--                        android:textStyle="bold" />-->
-<!--                </LinearLayout>-->
-<!--            </com.google.android.material.card.MaterialCardView>-->
-
-<!--            <com.google.android.material.card.MaterialCardView-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="1"-->
-<!--                app:cardBackgroundColor="#2A2A2A"-->
-<!--                app:cardCornerRadius="8dp">-->
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:padding="12dp"-->
-<!--                    android:orientation="vertical">-->
-
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Figma"-->
-<!--                        android:textColor="#FFFFFF"-->
-<!--                        android:textSize="14sp" />-->
-
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="$8.00"-->
-<!--                        android:textColor="#FF5722"-->
-<!--                        android:textSize="16sp"-->
-<!--                        android:textStyle="bold" />-->
-<!--                </LinearLayout>-->
-<!--            </com.google.android.material.card.MaterialCardView>-->
-<!--        </LinearLayout>-->
 
     </LinearLayout>
 </ScrollView>
