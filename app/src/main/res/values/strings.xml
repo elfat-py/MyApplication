@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="hello_message">Welcome you are on settings page!</string>
+    <string name="hello_add_expense">Welcome you are on add expense page!</string>
     <string name="second_text"></string>
     <string name="first_field">default value</string>
     <string name="submit_button_main">Submit</string>
