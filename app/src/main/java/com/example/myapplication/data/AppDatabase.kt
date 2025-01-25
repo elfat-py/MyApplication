@@ -28,7 +28,7 @@ abstract class AppDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "some_db" // Database name
+                    "database" // Database name
                 )
                     .addCallback(AppDatabaseCallback(context)) // Pass context to the callback
                     .fallbackToDestructiveMigration() // For development; replace with migrations in production

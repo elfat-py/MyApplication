@@ -6,8 +6,6 @@
         android:icon="@drawable/ic_home"
         android:title="Home" />
 
-
-
     <item
         android:id="@+id/nav_graphs"
         android:icon="@drawable/ic_charts"
@@ -17,7 +15,6 @@
         android:id="@+id/nav_add_expense"
         android:icon="@drawable/ic_add_expense"
         android:title="Add expense" />
-
 
     <item
         android:id="@+id/nav_user"

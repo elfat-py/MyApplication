@@ -15,8 +15,12 @@ interface ExpenseDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertExpense(expense: Expense)
 
-    @Query("SELECT * FROM expense ORDER BY date DESC")
+    @Query("SELECT * FROM expense")
     fun getAllExpensesFlow(): Flow<List<Expense>>
+
+
+//    @Query("SELECT * FROM expense ORDER BY date DESC")
+//    fun getAllExpensesFlow(): Flow<List<Expense>>
 
     @Query("DELETE FROM expense WHERE id = :expenseId")
     suspend fun deleteExpense(expenseId: Int)

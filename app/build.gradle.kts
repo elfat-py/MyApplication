@@ -1,4 +1,5 @@
 val roomVersion = "2.5.2"
+val lifecycleVersion = "2.6.1" // Use latest stable version
 
 plugins {
     alias(libs.plugins.android.application)
@@ -42,6 +43,11 @@ android {
 }
 
 dependencies {
+    // Room deps...
+    implementation("androidx.room:room-runtime:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+
     implementation("androidx.room:room-runtime:$roomVersion")
     implementation(libs.androidx.mediarouter)
     ksp("androidx.room:room-compiler:$roomVersion")  // KSP instead of kapt
@@ -59,4 +65,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Add these:
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
 }

@@ -14,6 +14,14 @@
     <string name="previous">Previous</string>
     <string name="expense_icon">Expense Icon</string>
     <string name="currency_prompt">Currency</string>
+    <string-array name="category_array">
+        <item>Food</item>
+        <item>Transport</item>
+        <item>Entertainment</item>
+        <item>Health</item>
+        <item>Shopping</item>
+    </string-array>
+
     <string-array name="currency_options">
         <item>USD</item>
         <item>ALL</item>
